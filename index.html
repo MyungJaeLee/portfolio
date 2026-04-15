@@ -112,49 +112,54 @@
     .about-img {
       width: 100%; aspect-ratio: 1;
       border-radius: 16px;
-      background: linear-gradient(135deg, #1a0533 0%, #0d1f3c 100%);
+      background: #0d0500;
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
     }
-    .about-img .stars span {
-      position: absolute; border-radius: 50%;
-      background: #fff; animation: twinkle 2s infinite alternate;
+    .about-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; border-radius: 16px;
+      transition: transform .4s ease;
     }
-    @keyframes twinkle { from { opacity: .2; } to { opacity: 1; } }
-    .about-img svg { width: 80%; height: 80%; filter: drop-shadow(0 0 24px rgba(124,58,237,0.7)); }
+    .about-img img:hover { transform: scale(1.04); }
+    .about-img svg { width: 88%; height: 88%; filter: drop-shadow(0 0 32px rgba(220,38,38,0.5)); }
     @keyframes gallop {
-      0%   { transform: translateY(0px) rotate(-2deg); }
-      25%  { transform: translateY(-18px) rotate(2deg); }
-      50%  { transform: translateY(-8px) rotate(-1deg); }
-      75%  { transform: translateY(-22px) rotate(3deg); }
-      100% { transform: translateY(0px) rotate(-2deg); }
+      0%   { transform: translateY(0px) rotate(-1deg); }
+      20%  { transform: translateY(-20px) rotate(2deg); }
+      40%  { transform: translateY(-10px) rotate(-1deg); }
+      60%  { transform: translateY(-24px) rotate(2.5deg); }
+      80%  { transform: translateY(-6px) rotate(-0.5deg); }
+      100% { transform: translateY(0px) rotate(-1deg); }
     }
-    .unicorn-body { animation: gallop 0.7s ease-in-out infinite; transform-origin: center; }
-    @keyframes hornGlow {
-      0%, 100% { filter: drop-shadow(0 0 6px #fff) drop-shadow(0 0 16px #a78bfa); }
-      50%       { filter: drop-shadow(0 0 14px #fff) drop-shadow(0 0 30px #7c3aed); }
+    .horse-body { animation: gallop 0.55s ease-in-out infinite; transform-origin: center 60%; }
+    @keyframes maneWave {
+      0%   { d: path("M210,95 C225,80 232,65 228,50 C238,68 242,85 235,100"); }
+      50%  { d: path("M210,95 C230,75 240,60 232,45 C245,65 246,82 238,98"); }
+      100% { d: path("M210,95 C225,80 232,65 228,50 C238,68 242,85 235,100"); }
     }
-    .unicorn-horn { animation: hornGlow 1.2s ease-in-out infinite; }
-    @keyframes maneFlow {
-      0%   { transform: skewX(0deg); }
-      50%  { transform: skewX(-6deg); }
-      100% { transform: skewX(0deg); }
+    @keyframes tailWave {
+      0%   { transform: rotate(0deg); }
+      50%  { transform: rotate(12deg); }
+      100% { transform: rotate(0deg); }
     }
-    .unicorn-mane { animation: maneFlow 0.5s ease-in-out infinite; transform-origin: top; }
-    @keyframes sparkle {
-      0%   { opacity: 0; transform: scale(0) translateY(0); }
-      50%  { opacity: 1; transform: scale(1) translateY(-10px); }
-      100% { opacity: 0; transform: scale(0) translateY(-20px); }
+    .horse-tail { animation: tailWave 0.4s ease-in-out infinite; transform-origin: 72px 168px; }
+    @keyframes dustPuff {
+      0%   { opacity: 0; transform: scaleX(0) translateX(0); }
+      30%  { opacity: 0.6; transform: scaleX(1) translateX(0); }
+      100% { opacity: 0; transform: scaleX(1.8) translateX(-20px); }
     }
-    .spark1 { animation: sparkle 0.8s ease-in-out infinite; }
-    .spark2 { animation: sparkle 0.8s ease-in-out 0.2s infinite; }
-    .spark3 { animation: sparkle 0.8s ease-in-out 0.4s infinite; }
-    @keyframes groundDust {
-      0%   { opacity: 0; transform: scaleX(0); }
-      40%  { opacity: .5; transform: scaleX(1); }
-      100% { opacity: 0; transform: scaleX(1.5) translateX(10px); }
+    .dust1 { animation: dustPuff 0.55s ease-out infinite; transform-origin: right; }
+    .dust2 { animation: dustPuff 0.55s ease-out 0.18s infinite; transform-origin: right; }
+    @keyframes emberFloat {
+      0%   { opacity:0; transform: translate(0,0) scale(0.5); }
+      40%  { opacity:1; }
+      100% { opacity:0; transform: translate(var(--dx), var(--dy)) scale(1.2); }
     }
-    .dust { animation: groundDust 0.5s ease-out infinite; transform-origin: left; }
+    .ember { animation: emberFloat 0.8s ease-out infinite; }
+    .e1 { --dx:-12px; --dy:-22px; animation-delay:0s; }
+    .e2 { --dx:8px;  --dy:-28px; animation-delay:0.15s; }
+    .e3 { --dx:-6px; --dy:-18px; animation-delay:0.3s; }
+    .e4 { --dx:14px; --dy:-20px; animation-delay:0.45s; }
 
     /* SKILLS */
     #skills .skills-grid {
@@ -283,103 +288,207 @@
       <p>Creating something from nothing — that's how I work, and that's my edge.</p>
     </div>
     <div class="about-img">
-      <!-- stars -->
-      <div class="stars">
-        <span style="width:3px;height:3px;top:10%;left:15%;animation-delay:.3s"></span>
-        <span style="width:2px;height:2px;top:20%;left:70%;animation-delay:.8s"></span>
-        <span style="width:4px;height:4px;top:55%;left:85%;animation-delay:.1s"></span>
-        <span style="width:2px;height:2px;top:75%;left:25%;animation-delay:.6s"></span>
-        <span style="width:3px;height:3px;top:30%;left:50%;animation-delay:1s"></span>
-        <span style="width:2px;height:2px;top:80%;left:60%;animation-delay:.4s"></span>
-      </div>
-      <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+      <img src="horse.png" alt="Galloping horse at sunset"/>
+      <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg" style="display:none">
         <defs>
-          <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#e2d9f3"/>
-            <stop offset="100%" style="stop-color:#c4b5fd"/>
+          <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#0d0500"/>
+            <stop offset="60%" style="stop-color:#1a0800"/>
+            <stop offset="100%" style="stop-color:#2a0d00"/>
           </linearGradient>
-          <linearGradient id="maneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#f472b6"/>
-            <stop offset="50%" style="stop-color:#a78bfa"/>
-            <stop offset="100%" style="stop-color:#06b6d4"/>
+          <linearGradient id="bodyGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+            <stop offset="0%" style="stop-color:#d63031"/>
+            <stop offset="40%" style="stop-color:#b71c1c"/>
+            <stop offset="100%" style="stop-color:#7f0000"/>
           </linearGradient>
-          <linearGradient id="hornGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#fff"/>
-            <stop offset="100%" style="stop-color:#a78bfa"/>
+          <linearGradient id="bodyHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ef5350;stop-opacity:0.6"/>
+            <stop offset="100%" style="stop-color:#b71c1c;stop-opacity:0"/>
           </linearGradient>
-          <linearGradient id="trailGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0"/>
-            <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.5"/>
+          <linearGradient id="legGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#c62828"/>
+            <stop offset="100%" style="stop-color:#6d0000"/>
           </linearGradient>
+          <linearGradient id="neckGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#c62828"/>
+            <stop offset="100%" style="stop-color:#b71c1c"/>
+          </linearGradient>
+          <linearGradient id="groundGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#dc2626;stop-opacity:0"/>
+            <stop offset="40%" style="stop-color:#dc2626;stop-opacity:0.5"/>
+            <stop offset="100%" style="stop-color:#dc2626;stop-opacity:0"/>
+          </linearGradient>
+          <radialGradient id="shadowGrad" cx="50%" cy="50%">
+            <stop offset="0%" style="stop-color:#000;stop-opacity:0.5"/>
+            <stop offset="100%" style="stop-color:#000;stop-opacity:0"/>
+          </radialGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="softglow">
+            <feGaussianBlur stdDeviation="5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
         </defs>
 
-        <!-- speed trail -->
-        <g class="dust">
-          <ellipse cx="60" cy="210" rx="40" ry="6" fill="url(#trailGrad)" opacity="0.6"/>
-          <ellipse cx="40" cy="218" rx="25" ry="4" fill="url(#trailGrad)" opacity="0.4"/>
+        <!-- background -->
+        <rect width="400" height="340" fill="url(#bgGrad)"/>
+
+        <!-- subtle ground fog -->
+        <ellipse cx="200" cy="270" rx="180" ry="30" fill="#3d0000" opacity="0.4"/>
+
+        <!-- speed lines left -->
+        <g opacity="0.2">
+          <line x1="0" y1="148" x2="75" y2="148" stroke="#ef4444" stroke-width="2.5"/>
+          <line x1="0" y1="162" x2="60" y2="162" stroke="#ef4444" stroke-width="1.5"/>
+          <line x1="0" y1="175" x2="50" y2="175" stroke="#ef4444" stroke-width="1"/>
+          <line x1="0" y1="135" x2="55" y2="135" stroke="#ef4444" stroke-width="1"/>
+          <line x1="0" y1="122" x2="40" y2="122" stroke="#ef4444" stroke-width="0.8"/>
         </g>
 
-        <!-- sparkles around horn -->
-        <g class="spark1"><circle cx="185" cy="52" r="4" fill="#f472b6"/></g>
-        <g class="spark2"><circle cx="200" cy="38" r="3" fill="#a78bfa"/></g>
-        <g class="spark3"><circle cx="170" cy="42" r="3" fill="#06b6d4"/></g>
+        <!-- dust puffs -->
+        <g class="dust1">
+          <ellipse cx="100" cy="258" rx="42" ry="13" fill="#5c1a1a" opacity="0.55"/>
+          <ellipse cx="76" cy="252" rx="26" ry="9" fill="#4a1010" opacity="0.4"/>
+          <ellipse cx="118" cy="262" rx="18" ry="7" fill="#5c1a1a" opacity="0.3"/>
+        </g>
+        <g class="dust2">
+          <ellipse cx="88" cy="263" rx="32" ry="9" fill="#3d0000" opacity="0.45"/>
+        </g>
 
-        <!-- main unicorn group -->
-        <g class="unicorn-body">
+        <!-- ember sparks -->
+        <g class="ember e1"><circle cx="118" cy="254" r="3.5" fill="#f97316" filter="url(#glow)"/></g>
+        <g class="ember e2"><circle cx="136" cy="250" r="2.5" fill="#fbbf24" filter="url(#glow)"/></g>
+        <g class="ember e3"><circle cx="108" cy="258" r="2" fill="#ef4444" filter="url(#glow)"/></g>
+        <g class="ember e4"><circle cx="128" cy="246" r="3" fill="#fb923c" filter="url(#glow)"/></g>
 
-          <!-- rear legs (galloping back) -->
-          <rect x="108" y="195" width="18" height="48" rx="9" fill="url(#bodyGrad)" transform="rotate(20,117,195)"/>
-          <rect x="88" y="195" width="18" height="48" rx="9" fill="#d4c8f0" transform="rotate(-15,97,195)"/>
+        <!-- HORSE -->
+        <g class="horse-body">
 
-          <!-- body -->
-          <ellipse cx="145" cy="175" rx="72" ry="42" fill="url(#bodyGrad)"/>
+          <!-- ground shadow -->
+          <ellipse cx="210" cy="265" rx="95" ry="11" fill="url(#shadowGrad)"/>
 
-          <!-- front legs (leaping forward) -->
-          <rect x="168" y="190" width="18" height="50" rx="9" fill="url(#bodyGrad)" transform="rotate(-25,177,190)"/>
-          <rect x="188" y="195" width="18" height="48" rx="9" fill="#d4c8f0" transform="rotate(10,197,195)"/>
-
-          <!-- neck -->
-          <ellipse cx="195" cy="148" rx="28" ry="36" fill="url(#bodyGrad)" transform="rotate(-20,195,148)"/>
-
-          <!-- mane -->
-          <g class="unicorn-mane">
-            <path d="M182,118 C165,108 155,125 162,140 C150,130 148,148 158,155 C145,148 145,165 158,168" 
-                  stroke="url(#maneGrad)" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <!-- === REAR LEGS === -->
+          <!-- rear left leg (back, darker) - extended back -->
+          <g opacity="0.82">
+            <path d="M148,210 C144,225 138,240 132,258 C136,258 142,258 146,258 C150,242 156,226 158,212 Z" fill="url(#legGrad)"/>
+            <!-- cannon bone -->
+            <path d="M132,248 C130,255 130,260 132,262 L146,262 C147,260 146,254 146,248 Z" fill="#7f0000"/>
+            <!-- hoof -->
+            <path d="M129,260 Q138,265 148,262 Q148,268 138,270 Q128,268 129,260 Z" fill="#1a1a1a"/>
           </g>
+          <!-- rear right leg - tucked under, galloping -->
+          <path d="M162,208 C162,222 165,238 168,255 C172,255 178,254 180,252 C177,236 174,220 172,208 Z" fill="url(#bodyGrad)"/>
+          <path d="M168,245 C168,252 169,258 170,260 L182,258 C182,255 181,250 180,245 Z" fill="#9e2020"/>
+          <path d="M166,258 Q174,263 184,260 Q183,267 174,268 Q164,266 166,258 Z" fill="#1a1a1a"/>
 
-          <!-- head -->
-          <ellipse cx="208" cy="118" rx="30" ry="24" fill="url(#bodyGrad)" transform="rotate(-15,208,118)"/>
+          <!-- === BODY === -->
+          <!-- main barrel - realistic horse torso shape -->
+          <path d="M135,175 C138,148 158,135 185,133 C210,131 240,138 258,150 C272,160 278,175 275,192 C272,208 260,220 240,226 C218,232 190,232 168,226 C148,220 133,208 132,192 Z" fill="url(#bodyGrad)"/>
+          <!-- body highlight top -->
+          <path d="M155,145 C175,135 210,133 238,143 C255,150 266,162 264,175 C258,158 240,146 215,140 C190,134 165,138 155,145 Z" fill="url(#bodyHighlight)"/>
+          <!-- belly shading -->
+          <path d="M148,210 C165,222 200,228 235,222 C255,216 268,205 270,195 C262,210 245,220 222,224 C196,228 168,224 148,210 Z" fill="#6d0000" opacity="0.5"/>
 
-          <!-- eye -->
-          <circle cx="220" cy="112" r="5" fill="#1e1b4b"/>
-          <circle cx="222" cy="110" r="2" fill="#fff"/>
+          <!-- === NECK === -->
+          <path d="M238,152 C248,138 252,120 248,103 C258,108 268,125 268,145 C268,160 258,170 245,172 Z" fill="url(#neckGrad)"/>
+          <!-- neck highlight -->
+          <path d="M242,148 C250,133 253,115 250,100 C255,106 262,120 261,140 C260,153 252,163 244,167 Z" fill="#ef5350" opacity="0.3"/>
 
+          <!-- === FRONT LEGS === -->
+          <!-- front right leg - powerfully extended forward -->
+          <path d="M248,175 C255,190 262,210 266,232 C270,232 276,230 278,228 C274,207 267,187 260,172 Z" fill="url(#bodyGrad)"/>
+          <!-- knee joint -->
+          <ellipse cx="265" cy="215" rx="8" ry="7" fill="#9e1c1c"/>
+          <!-- cannon -->
+          <path d="M262,218 C263,230 264,242 264,250 L278,248 C277,240 276,228 274,216 Z" fill="url(#legGrad)"/>
+          <!-- hoof -->
+          <path d="M261,248 Q270,254 281,250 Q281,257 271,259 Q260,257 261,248 Z" fill="#1a1a1a"/>
+
+          <!-- front left leg - slightly behind, bent -->
+          <path d="M235,178 C238,194 240,215 240,238 C244,238 250,237 252,235 C252,213 250,192 246,176 Z" fill="url(#legGrad)" opacity="0.85"/>
+          <ellipse cx="242" cy="220" rx="7" ry="6" fill="#7f0000"/>
+          <path d="M238,224 C238,236 238,245 239,252 L253,250 C252,243 252,235 251,224 Z" fill="#7f0000"/>
+          <path d="M236,250 Q245,255 255,252 Q254,259 245,260 Q235,258 236,250 Z" fill="#1a1a1a"/>
+
+          <!-- === HEAD === -->
+          <!-- poll / top of head -->
+          <path d="M244,82 C248,72 255,68 260,72 C265,76 264,86 260,92 C266,88 272,88 274,94 C270,104 260,108 252,104 Z" fill="url(#bodyGrad)"/>
+          <!-- main head shape - elongated horse head -->
+          <path d="M246,104 C248,92 250,82 248,72
+                   C254,68 262,70 266,78
+                   C270,86 270,98 268,108
+                   C272,112 278,118 280,126
+                   C282,134 280,142 276,146
+                   C272,150 264,150 258,146
+                   C252,142 248,134 246,124
+                   C244,114 244,108 246,104 Z" fill="url(#bodyGrad)"/>
+          <!-- face highlight -->
+          <path d="M250,88 C254,80 260,76 264,80 C268,86 268,96 266,106 C270,112 274,120 274,130 C272,118 268,110 264,106 C266,96 266,84 262,78 C258,76 252,80 250,88 Z" fill="#ef5350" opacity="0.25"/>
+          <!-- muzzle / nose area -->
+          <path d="M268,138 C272,134 280,134 284,140 C288,146 286,154 282,158 C278,162 270,162 266,156 C262,150 264,142 268,138 Z" fill="#c62828"/>
           <!-- nostril -->
-          <ellipse cx="230" cy="122" rx="3" ry="2" fill="#c4b5fd"/>
+          <ellipse cx="278" cy="150" rx="5" ry="4" fill="#4a0000" transform="rotate(-10,278,150)"/>
+          <ellipse cx="270" cy="153" rx="3.5" ry="3" fill="#4a0000" transform="rotate(-5,270,153)"/>
+          <!-- mouth line -->
+          <path d="M272,160 Q280,164 286,158" stroke="#4a0000" stroke-width="1.5" fill="none" stroke-linecap="round"/>
 
-          <!-- horn -->
-          <g class="unicorn-horn">
-            <polygon points="215,96 222,56 229,96" fill="url(#hornGrad)"/>
-            <line x1="216" y1="90" x2="228" y2="90" stroke="#a78bfa" stroke-width="1.5" opacity="0.6"/>
-            <line x1="217" y1="80" x2="227" y2="80" stroke="#a78bfa" stroke-width="1.5" opacity="0.6"/>
-            <line x1="218" y1="70" x2="226" y2="70" stroke="#a78bfa" stroke-width="1.5" opacity="0.6"/>
+          <!-- eye - large, expressive -->
+          <ellipse cx="258" cy="108" rx="9" ry="8" fill="#111"/>
+          <ellipse cx="258" cy="108" rx="7" ry="6" fill="#1a1a1a"/>
+          <!-- iris -->
+          <ellipse cx="258" cy="108" rx="5" ry="4.5" fill="#2d1a00"/>
+          <!-- pupil -->
+          <ellipse cx="258" cy="108" rx="3" ry="3.5" fill="#000"/>
+          <!-- eye highlight -->
+          <circle cx="255" cy="105" r="2.5" fill="#fff" opacity="0.7"/>
+          <circle cx="261" cy="111" r="1" fill="#fff" opacity="0.3"/>
+          <!-- eyelid -->
+          <path d="M249,104 Q258,100 267,104" stroke="#7f0000" stroke-width="1.5" fill="none"/>
+          <path d="M249,112 Q258,116 267,112" stroke="#7f0000" stroke-width="1" fill="none" opacity="0.5"/>
+
+          <!-- ear - pointed, alert -->
+          <path d="M246,82 C244,70 248,58 254,56 C258,62 258,74 256,84 Z" fill="url(#bodyGrad)"/>
+          <path d="M247,80 C246,70 249,62 254,60 C256,66 256,74 254,82 Z" fill="#4a0000"/>
+          <!-- second ear hint -->
+          <path d="M256,80 C255,70 258,60 263,58 C266,64 265,75 262,82 Z" fill="#9e1c1c" opacity="0.7"/>
+
+          <!-- === MANE === -->
+          <!-- flowing mane along neck -->
+          <path d="M248,88 C238,95 228,108 222,122 C216,136 214,150 216,162"
+                stroke="#111" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M248,88 C240,96 230,110 225,124 C220,138 218,152 220,164"
+                stroke="#222" stroke-width="9" fill="none" stroke-linecap="round"/>
+          <path d="M248,88 C242,97 234,112 229,126 C224,140 223,154 225,165"
+                stroke="#333" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <!-- forelock -->
+          <path d="M248,82 C244,76 238,72 234,74 C236,80 240,86 246,90 Z" fill="#1a1a1a"/>
+
+          <!-- === TAIL === -->
+          <g class="horse-tail">
+            <path d="M138,185 C120,178 102,168 94,152 C88,138 92,122 100,110"
+                  stroke="#111" stroke-width="16" fill="none" stroke-linecap="round"/>
+            <path d="M138,185 C118,176 100,165 93,148 C87,133 92,117 101,105"
+                  stroke="#1a1a1a" stroke-width="11" fill="none" stroke-linecap="round"/>
+            <path d="M100,112 C96,128 98,148 104,164 C96,150 90,136 94,118"
+                  stroke="#222" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M98,116 C92,134 96,155 106,170 C94,156 88,138 94,120"
+                  stroke="#333" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M96,120 C91,138 95,158 107,174"
+                  stroke="#444" stroke-width="3" fill="none" stroke-linecap="round"/>
           </g>
-
-          <!-- tail -->
-          <path d="M78,168 C55,155 40,140 50,118 C42,138 28,148 38,168 C28,155 18,165 35,180" 
-                stroke="url(#maneGrad)" stroke-width="10" fill="none" stroke-linecap="round"/>
-
-          <!-- ear -->
-          <polygon points="200,98 207,80 214,98" fill="url(#bodyGrad)"/>
-          <polygon points="202,96 207,84 212,96" fill="#f472b6"/>
 
         </g>
 
-        <!-- ground line -->
-        <line x1="20" y1="242" x2="280" y2="242" stroke="#7c3aed" stroke-width="1.5" opacity="0.3"/>
+        <!-- ground glow -->
+        <rect x="10" y="266" width="380" height="3" rx="1.5" fill="url(#groundGrad)"/>
 
-        <!-- label -->
-        <text x="150" y="268" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#a78bfa" letter-spacing="3">UNSTOPPABLE</text>
+        <!-- text -->
+        <text x="200" y="294" text-anchor="middle" font-family="Inter,sans-serif"
+              font-size="15" font-weight="900" fill="#ef4444" letter-spacing="5" filter="url(#glow)">UNSTOPPABLE</text>
+        <text x="200" y="312" text-anchor="middle" font-family="Inter,sans-serif"
+              font-size="9" font-weight="500" fill="#7f0000" letter-spacing="7">MYUNGJAE  LEE</text>
       </svg>
     </div>
   </div>
@@ -427,9 +536,9 @@
     <div class="proj-card">
       <div class="proj-emoji">🛠️</div>
       <h3>Building New Products</h3>
-      <p>Designing and launching competitive new products from concept to market — leading every step of the journey from idea to delivery.</p>
+      <p>Designing and launching competitive new products from concept to market — leading every step of the journey from idea to delivery. Capable of directly leading algorithm design and development teams, bridging business strategy with engineering execution.</p>
       <div class="tags">
-        <span class="tag">Product</span><span class="tag">Strategy</span><span class="tag">Innovation</span>
+        <span class="tag">Product</span><span class="tag">Strategy</span><span class="tag">Innovation</span><span class="tag">Algorithm Creating</span><span class="tag">Dev Leadership</span>
       </div>
     </div>
   </div>
